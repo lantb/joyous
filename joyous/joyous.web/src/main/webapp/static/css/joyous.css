@@ -1,0 +1,9 @@
+.main_top {position: relative;width:100%;height:94px;background-color:red;}
+
+.main_hello {position: absolute; width:200px;height:20px;background-color:blue;right:20px;bottom: 0px;margin-right:10px;margin-bottom:5px;}
+.main_logout {position: absolute; width:40px;height:20px;background-color:black;right:0px;bottom: 0px;margin-right:10px;margin-bottom:5px;}
+.main_mid {position: relative;width:100%;background-color:#872322;}
+.main_bottom {position: relative;width:100%;height:40px;background-color:#372322;}
+
+.main_mid_left {position: absolute; width:100%;height:100%;background-color:yellow;left:0px;}
+.main_mid_right {position: absolute;width:100%;height:100%;background-color:#372322;right:0px;}

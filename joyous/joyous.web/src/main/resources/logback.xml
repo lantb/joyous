@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- debug="true" 启动时输出配置加载信息 scan="true" 默认每分钟自动扫描 scanPeriod="30 seconds" 
+	设置每30秒自动扫描,若没有指定具体单位则以milliseconds为标准(单位:milliseconds, seconds, minutes or 
+	hours) -->
+<configuration scan="true" scanPeriod="2 seconds">
+
+	<contextName>JoyousLogging</contextName>
+
+	<!--tomcat logs路径 -->
+	<property name="logback.logs.path" value="${catalina.base}/logs" />
+	<!--项目名 -->
+	<property name="logback.project.name" value="joyous" />
+	<!--日志模块名(如:默认(default),销售(sales),订单(orders)...) -->
+	<property name="logback.logs.module.name" value="web" />
+	<property name="date.pattern" value="yyyy-MM-dd" />
+	<timestamp key="day" datePattern="yyyy-MM-dd" />
+
+	<!--appender 模块 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>[%level] - %date{HH:mm:ss.SSS} - %logger#%line%n %m%n
+			</pattern>
+		</encoder>
+		<target>System.out</target>
+	</appender>
+
+	<appender name="file1" class="ch.qos.logback.core.FileAppender">
+		<file>${logback.logs.path}/${logback.project.name}/${logback.logs.module.name}/log_${day}.log
+		</file>
+		<append>true</append>
+		<encoder charset="UTF-8">
+			<pattern>[%level][%thread] - %date{HH:mm:ss.SSS} - %logger#%line %m%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="file2"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.logs.path}/${logback.project.name}/${logback.logs.module.name}/log_${day}.log
+		</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>log_%d{${date.pattern}}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder charset="UTF-8">
+			<pattern>[%level][%thread] - %date{HH:mm:ss.SSS} - %logger#%line %m%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<!--SSH2 -->
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="org.hibernate" level="DEBUG" />
+	<logger name="org.apache.struts2" level="DEBUG" />
+	<logger name="com.opensymphony" level="DEBUG" />
+
+	<!--Base -->
+	<logger name="org.jboss" level="DEBUG" />
+	<logger name="org.activiti.spring" level="DEBUG" />
+	<logger name="org.activiti.engine" level="DEBUG" />
+	<logger name="org.apache.shiro" level="DEBUG" />
+	<logger name="org.mybatis" level="DEBUG" />
+	<logger name="com.atomikos" level="DEBUG" />
+	<logger name="atomikos" level="DEBUG" />
+	<logger name="org.apache.ibatis" level="DEBUG" />
+	<logger name="com.collin" level="DEBUG" />
+	<logger name="org.apache.cxf" level="DEBUG" />
+	<logger name="org.quartz" level="DEBUG" />
+	<logger name="org.apache.activemq" level="DEBUG" />
+	<logger name="io.netty" level="DEBUG" />
+	<root level="DEBUG">
+		<appender-ref ref="console" />
+		<appender-ref ref="file2" />
+	</root>
+</configuration>

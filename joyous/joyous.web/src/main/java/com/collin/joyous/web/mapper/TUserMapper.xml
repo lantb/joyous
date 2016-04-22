@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.collin.joyous.web.mapper.TUserMapper">  
+<resultMap type="com.collin.joyous.web.entity.TUser" id="TUser">
+	<result column="USERNAME"  jdbcType="VARCHAR" property="username" />
+	<result column="PASSWORD"  jdbcType="VARCHAR" property="password" />
+</resultMap>
+<sql id="table_name"> T_USER </sql>
+<sql id="Where_Clause">
+	<where>
+        <foreach collection="criteria" item="criterion">
+          <choose>
+            <when test="criterion.noValue">
+              and ${criterion.condition}
+            </when>
+            <when test="criterion.singleValue">
+              and ${criterion.condition} #{criterion.value}
+            </when>
+            <when test="criterion.betweenValue">
+              and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+            </when>
+            <when test="criterion.listValue">
+              and ${criterion.condition}
+              <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                #{listItem}
+              </foreach>
+            </when>
+          </choose>
+        </foreach>
+    </where>
+</sql>
+<select id="selectByCriteria" parameterType="com.collin.joyous.web.entity.TUserCriteria" resultMap="TUser">
+    SELECT
+    <if test="distinct">
+      DISTINCT
+    </if>
+    <include refid="Base_Column_List" />
+    FROM <include refid="table_name" />
+    <if test="criteria != null">
+      <include refid="Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+</select>
+<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="TUser">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM <include refid="table_name" />
+    WHERE C_ID = #{cId,jdbcType=VARCHAR}
+</select>
+<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM <include refid="table_name" />
+    WHERE C_ID = #{cId,jdbcType=VARCHAR}
+</delete>
+<delete id="deleteByCriteria" parameterType="com.collin.joyous.web.entity.TUserCriteria">
+    DELETE FROM <include refid="table_name" />
+    <if test="criteria != null">
+      <include refid="Where_Clause" />
+    </if>
+</delete>
+<insert id="insert" parameterType="com.collin.joyous.web.entity.TUser">
+	INSERT INTO <include refid="table_name" /> 
+	(
+	<include refid="Base_Column_List" />
+	) values(
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}
+	)
+</insert>
+<select id="countByCriteria" parameterType="com.collin.joyous.web.entity.TUserCriteria" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM <include refid="table_name" />
+    <if test="criteria != null">
+      <include refid="Where_Clause" />
+    </if>
+</select>
+<update id="updateByPrimaryKeySelective" parameterType="com.collin.joyous.web.entity.TUser">
+    update <include refid="table_name" />
+    <set>
+      <if test="sysId != null">
+        SYS_ID = #{sysId,jdbcType=DECIMAL}
+      </if>
+      
+    </set>
+    where c_id = #{c_id,jdbcType=VARCHAR}
+</update>
+<update id="updateByPrimaryKey" parameterType="com.collin.joyous.web.entity.TUser">
+    update <include refid="table_name" />
+    set SYS_ID = #{sysId,jdbcType=DECIMAL},
+      SYS_OWNER = #{sysOwner,jdbcType=VARCHAR}
+      
+    where c_id = #{c_id,jdbcType=VARCHAR}
+</update>
+
+
+<sql id="Base_Column_List">
+	USERNAME,PASSWORD
+</sql>
+	
+<!--  查询单条记录  -->  
+    <select id="selectTUserByName" parameterType="String" resultMap="TUser">  
+       SELECT * FROM T_USER WHERE USERNAME = #{username}  
+    </select>  
+    <select id="selectTUser" parameterType="TUser" resultMap="TUser">  
+       SELECT * FROM T_USER WHERE USERNAME = ${username}  
+    </select> 
+</mapper> 

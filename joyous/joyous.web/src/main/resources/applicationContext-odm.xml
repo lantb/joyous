@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd   
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd   
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd   
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+		default-lazy-init="true">
+
+	<description>ODM 相关配置</description>
+
+	<context:property-placeholder location="classpath:odm.properties"/>  
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
+    <bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>
+    
+	<!-- 可通过注解控制事务 -->  
+    <tx:annotation-driven />  
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
+       destroy-method="close">  
+       <property name="driverClassName" value="${jdbc.driver}" />  
+       <property name="url" value="${jdbc.url}" />  
+       <property name="username" value="${jdbc.username}" />  
+       <property name="password" value="${jdbc.password}" />
+    </bean>  
+   
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+       <property name="dataSource" ref="dataSource" />
+       <property name="configLocation" value="classpath:mybatis-config.xml" /><!--mybatis配置文件路径-->
+    </bean>  
+   
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+       <property name="basePackage" value="com.collin.joyous.web.mapper" /> 
+       <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/> 
+    </bean> 
+</beans>

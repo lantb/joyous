@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.collin.joyous.web.mapper.TResourceMapper">  
+<resultMap type="com.collin.joyous.web.entity.TResource" id="TResource">
+	<result column="C_ID"  jdbcType="VARCHAR" property="cId" />
+	<result column="C_URL"  jdbcType="VARCHAR" property="cUrl" />
+	<result column="C_NAME"  jdbcType="VARCHAR" property="cName" />
+	<result column="C_PARENT_ID"  jdbcType="VARCHAR" property="cParentId" />
+	<result column="C_IS_PARENT"  jdbcType="VARCHAR" property="cIsParent" />
+	<result column="C_LEVEL"  jdbcType="VARCHAR" property="cLevel" />
+	<result column="C_SEQ"  jdbcType="VARCHAR" property="cSeq" />
+</resultMap>
+<!--  查询单条记录  -->  
+    <select id="selectTResource" parameterType="TResource" resultMap="TResource">  
+      select * from ( SELECT * FROM T_RESOURCE CONNECT BY C_PARENT_ID= PRIOR C_ID START WITH C_ID= ${cId}  )order by c_level asc,c_seq asc
+    </select> 
+</mapper> 

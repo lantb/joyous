@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="joyous.web Maven Webapp"
+  id="myeclipse.1418004519615"
+  context-root="/joyous.web"
+  j2ee-spec="6.0"
+  archive="joyous.web Maven Webapp.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.collin.joyous.web.mapper.TRoleMapper">  
+<resultMap type="com.collin.joyous.web.entity.TRole" id="TRole">
+	<result column="ID"  jdbcType="VARCHAR" property="id" />
+	<result column="ROLE_NAME"  jdbcType="VARCHAR" property="roleName" />
+	<result column="STATUS"  jdbcType="VARCHAR" property="status" />
+	<result column="CREATE_TIME"  jdbcType="VARCHAR" property="createTime" />
+	<result column="CREATE_USER"  jdbcType="VARCHAR" property="createUser" />
+</resultMap>
+	<sql id="Base_Column_List">
+	USERNAME,PASSWORD
+	</sql>
+	<insert id="insert" parameterType="com.collin.joyous.web.entity.TRole">
+		INSERT INTO T_USER (
+		<include refid="Base_Column_List" />
+		) values(
+			#{username,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR}
+		)
+	</insert>
+<!--  查询单条记录  -->
+</mapper> 
