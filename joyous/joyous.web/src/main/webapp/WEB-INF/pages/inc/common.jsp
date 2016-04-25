@@ -13,5 +13,8 @@ var appRoot = "${appRoot}";
 </script>
 <script src="${appRoot}/static/js/jquery/jquery-1.11.2.js"  language="javascript" type="text/javascript"></script>
 
+<script src="${appRoot}/static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <%-- <script src="${appRoot}/js/jquery/jquery-1.11.2.min.js" type="text/javascript"></script> --%>
 <link href="${appRoot}/static/css/joyous.css" rel="stylesheet" type="text/css" />
+<!-- Bootstrap -->
+<link href="${appRoot}/static/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
