@@ -16,7 +16,7 @@
         http://www.springframework.org/schema/tx   
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">  
   
-    <mvc:annotation-driven > <mvc:annotation-driven /> 
+    <mvc:annotation-driven > </mvc:annotation-driven> 
     <context:annotation-config/>
     <!-- 获取bean工具注入 -->
     <bean id="springUtil" class="com.collin.joyous.web.util.SpringUtil" lazy-init="false" />
