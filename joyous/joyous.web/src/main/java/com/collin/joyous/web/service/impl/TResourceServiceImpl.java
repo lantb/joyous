@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.collin.joyous.web.entity.TResource;
+import com.collin.joyous.web.entity.TResourceCriteria;
 import com.collin.joyous.web.mapper.TResourceMapper;
 import com.collin.joyous.web.service.ITResourceService;
 
 @Service
 @Transactional
-public class TResourceServiceImpl implements ITResourceService {
+public class TResourceServiceImpl extends BaseService<TResource, TResourceCriteria> implements ITResourceService {
 
 	@Resource
 	private TResourceMapper resourceMapper;

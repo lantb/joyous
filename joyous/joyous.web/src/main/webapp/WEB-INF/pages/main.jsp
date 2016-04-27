@@ -19,20 +19,27 @@
     function index(url){
    		$("#iframe_right").attr("src",url);
     }
+    function clickMenu(actionStr){
+    	var url = "${appRoot}/"+actionStr;
+    	$("#iframe1").attr("src",url);
+    }
     </script>  
     <style type="text/css">
     
     
     
     </style>
-    <form id="loginForm" action=""></form>
-    <frameset framespacing="0" border="0" frameborder="0" rows="94,*,40">
-    
-		<frame name="ctiFrm" scrolling="no" noresize target="contents" src="${appRoot}/main_top.do">
-		<frameset cols="231,*" name="f1">
-			<frame name="iframe_left" src="${appRoot}/main_left.do" noresize scrolling="auto">
-			<frame id="iframe_right" name="iframe_right" scrolling="auto" noresize src="">
-		</frameset>
-		<frame name="ctiFrm" scrolling="no" noresize target="contents" src="${appRoot}/main_bottom.do">
-	</frameset>
+    <body>
+
+
+	<form id="loginForm" action="">
+		<div style="height: 98%; width: 98%" class=" navbar-fixed-top">
+			<div class="container">${menuString}</div>
+			<div style="height:98%;">
+				<iframe id="iframe1" src="" scrolling="auto" height="98%"
+					width="100%" frameborder="0"></iframe>
+			</div>
+		</div>
+	</form>
+</body>
 </html> 

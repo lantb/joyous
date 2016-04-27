@@ -5,16 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TreeVO {
+public class MenuVO implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String url;
-	private List<TreeVO> children = new ArrayList<TreeVO>();
-	private Map<String, TreeVO> childrenMap = new HashMap<String, TreeVO>();//seq,treeVO
+	private List<MenuVO> childrenList = new ArrayList<MenuVO>();
+	private Map<String, MenuVO> childrenMap = new HashMap<String, MenuVO>();//seq,treeVO
 	private String open;
 	private String target;
 	private String parent;
 	private String id;
+	private int level;
 	private int seq;
 	private String click;
 	
@@ -66,16 +71,22 @@ public class TreeVO {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public List<TreeVO> getChildren() {
-		return children;
+	public List<MenuVO> getChildrenList() {
+		return childrenList;
 	}
-	public void setChildren(List<TreeVO> children) {
-		this.children = children;
+	public void setChildrenList(List<MenuVO> childrenList) {
+		this.childrenList = childrenList;
 	}
-	public Map<String, TreeVO> getChildrenMap() {
+	public Map<String, MenuVO> getChildrenMap() {
 		return childrenMap;
 	}
-	public void setChildrenMap(Map<String, TreeVO> childrenMap) {
+	public void setChildrenMap(Map<String, MenuVO> childrenMap) {
 		this.childrenMap = childrenMap;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }
