@@ -35,7 +35,17 @@
 	<form id="loginForm" action="">
 		<div style="height: 98%; width: 98%" class=" navbar-fixed-top">
 			<div class="container">${menuString}</div>
-			<div style="height:98%;">
+			<div class="container main_top">
+				<div class="main_hello">
+					hello!
+					<shiro:principal></shiro:principal>
+				</div>
+				<div class="main_logout">
+					<a href="#" onclick="parent.logout();">logout</a>
+				</div>
+			</div>
+			
+			<div style="height:96%;">
 				<iframe id="iframe1" src="" scrolling="auto" height="98%"
 					width="100%" frameborder="0"></iframe>
 			</div>

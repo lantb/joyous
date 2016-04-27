@@ -148,7 +148,7 @@ public class LoginController {
 			
 			StringBuffer sb = new StringBuffer();
 			sb.append("")
-			.append("	<h6><nav class=\"navbar navbar-default navbar-static-to\">                                       ")
+			.append("	<h6><nav class=\"navbar navbar-default navbar-static-top\">                                       ")
 			.append("		<div class=\"container\">                                                 ")
 			.append("			<div class=\"navbar-header\">                                           ")
 			.append("				<button type=\"button\" class=\"navbar-toggle collapsed\"               ")
